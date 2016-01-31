@@ -17,7 +17,7 @@ while True:
 		identity = i['answer_id']
 		soup = BeautifulSoup(i['body'])
 		count = 0
-		for link in len(soup.findAll('a')):
+		for link in soup.findAll('a'):
 			ext = tldextract.extract(str(link.get('href')))
 			try:
 				sock = urllib2.urlopen(link.get("href"))
@@ -35,12 +35,16 @@ while True:
 						print "Nope"
 
 				for js in newSoup.findAll('script'):
+					if js.get('src') == None:
+						break
 					if js.get('src').startswith('/'):
 						js['src'] = str(link) + js.get('src')
 					else:
 						print "Nope"
 
 				for a in newSoup.findAll('a'):
+					if a.get('href') == None:
+						break
 					if a.get('href').startswith('/'):
 						a['href'] = str(link) + a.get('href')
 					else:
@@ -55,9 +59,10 @@ while True:
 					f.write(str(newSoup))
 					f.close()
 				sock.close()
-
-			except:
-				print "Nope"
+			except urllib2.HTTPError:
+				print "FORBIDDEN"
+			#except:
+			#	print "Nope"
 
 			count = count + 1
 	time.sleep(60)
