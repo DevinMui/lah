@@ -1,0 +1,23 @@
+{
+  "title": "Firefox Add On",
+  "name": "firefoxaddon",
+  "version": "0.0.1",
+  "description": "something stackoverflow something",
+  "main": "index.js",
+  "author": "Giang Duong",
+  "engines": {
+    "firefox": ">=38.0a1",
+    "fennec": ">=38.0a1"
+  },
+  "license": "MIT",
+  "keywords": [
+    "jetpack"
+  ],
+  "permissions": [ "webNavigation", "*://*/*" ],
+  "content_scripts": [
+  		{
+    		"matches": ["http://stackoverflow.com/*"],
+    		"js": ["jquery-1.12.0.min.js", "content.js"]
+  		}
+	]
+}
