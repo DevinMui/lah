@@ -17,7 +17,7 @@ while True:
 		identity = i['answer_id']
 		soup = BeautifulSoup(i['body'])
 		count = 0
-		for link in soup.findAll('a'):
+		for link in len(soup.findAll('a')):
 			ext = tldextract.extract(str(link.get('href')))
 			try:
 				sock = urllib2.urlopen(link.get("href"))
