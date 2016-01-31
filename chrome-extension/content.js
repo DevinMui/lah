@@ -9,6 +9,15 @@ $(document).ready(function() {
 			var xhr = new XMLHttpRequest(); // makes new api request to my server on my laptop
 			var params = JSON.stringify({"answer_id": answer_id}) // parameters to send to my server
 			xhr.open("POST", "http://4b4084d9.ngrok.io/links/find_post", true) // starts post to server
+			xhr.setRequestHeader("Accept", "application/json");
+			xhr.onreadystatechange = function () { // checks if async task is completed and returns data
+		        if (xhr.readyState == 4) {
+		            if (xhr.status == 200) {
+		                var data = xhr.responseText;
+		                console.log(data)
+		            }
+		        }
+		    };
 			xhr.send(params) // sends parameters to server
 		} catch(err) {
 			console.log("this a tag has no name attribute");
