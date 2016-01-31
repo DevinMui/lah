@@ -8,7 +8,7 @@ import time
 import tldextract
 from BeautifulSoup import BeautifulSoup
 headers = {'Accept': 'application/json'}
-url = "http://4b4084d9.ngrok.io/"
+url = "http://52.89.88.192:3000/"
 while True:
 	r = requests.get('https://api.stackexchange.com/2.2/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody')
 
@@ -18,8 +18,6 @@ while True:
 		soup = BeautifulSoup(i['body'])
 		count = 0
 		for link in soup.findAll('a'):
-			if len(link.findAll('img')):
-				return true
 			ext = tldextract.extract(str(link.get('href')))
 			try:
 				sock = urllib2.urlopen(link.get("href"))
@@ -53,7 +51,7 @@ while True:
 				if r.status_code == 201:
 				# randomly make file name
 				#print imghdr.what(str(newSoup))
-					f = open("lah-api/public/archive/" + name, 'w')
+					f = open("../lah-api/public/archive/" + name, 'w')
 					f.write(str(newSoup))
 					f.close()
 				sock.close()
