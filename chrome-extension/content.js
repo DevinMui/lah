@@ -1,4 +1,4 @@
-url = "http://4b4084d9.ngrok.io/"
+url = "http://52.89.88.192:3000/"
 $(document).ready(function() {
 	var answers = $('#answers').html()
 	//console.log(answers)
