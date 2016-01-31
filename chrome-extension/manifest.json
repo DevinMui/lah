@@ -2,6 +2,7 @@
   "manifest_version": 2,
   "name": "LAH Chrome Extension",
   "version": "1.0",
+  "permissions": [ "webNavigation", "*://*/*" ],
   "content_scripts": [
   		{
     		"matches": ["http://stackoverflow.com/questions/1140402/how-to-add-jquery-in-js-file"],

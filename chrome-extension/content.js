@@ -4,10 +4,7 @@
 
 //console.log(xhr.status);
 //console.log(xhr.statusText);
-
-function windowLoaded() {
-    
-    var answers = document.getElementById('answers').innerHTML;
-   	document.write(answers)
-};
+$(document).ready(function() {
+	alert($('#answers').html())
+});
 
