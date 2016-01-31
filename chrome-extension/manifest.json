@@ -1,11 +1,11 @@
 {
   "manifest_version": 2,
   "name": "LAH Chrome Extension",
-  "version": "1.0"
+  "version": "1.0",
   "content_scripts": [
   		{
-    		"matches": ["<all_urls>"],
-    		"js": ["content.js"],
+    		"matches": ["http://stackoverflow.com/questions/1140402/how-to-add-jquery-in-js-file"],
+    		"js": ["jquery-1.12.0.min.js", "content.js"]
   		}
-	],
+	]
 }
