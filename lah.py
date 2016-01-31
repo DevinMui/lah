@@ -8,7 +8,7 @@ import time
 import tldextract
 from BeautifulSoup import BeautifulSoup
 headers = {'Accept': 'application/json'}
-url = "http://52.89.88.192:3000/"
+url = "http://52.89.88.192/"
 while True:
 	r = requests.get('https://api.stackexchange.com/2.2/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody')
 
