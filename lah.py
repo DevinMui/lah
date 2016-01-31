@@ -9,7 +9,6 @@ import tldextract
 from BeautifulSoup import BeautifulSoup
 headers = {'Accept': 'application/json'}
 url = "http://4b4084d9.ngrok.io/"
-
 while True:
 	r = requests.get('https://api.stackexchange.com/2.2/answers?order=desc&sort=activity&site=stackoverflow&filter=withbody')
 
@@ -19,6 +18,8 @@ while True:
 		soup = BeautifulSoup(i['body'])
 		count = 0
 		for link in soup.findAll('a'):
+			if len(link.findAll('img')):
+				return true
 			ext = tldextract.extract(str(link.get('href')))
 			try:
 				sock = urllib2.urlopen(link.get("href"))
@@ -36,13 +37,10 @@ while True:
 						print "Nope"
 
 				for js in newSoup.findAll('script'):
-					try:
-						if js.get('src').startswith('/'):
-							js['src'] = str(link) + js.get('src')
-						else:
-							print "Nope"
-					except KeyError:
-						print "Key Error"
+					if js.get('src').startswith('/'):
+						js['src'] = str(link) + js.get('src')
+					else:
+						print "Nope"
 
 				for a in newSoup.findAll('a'):
 					if a.get('href').startswith('/'):

@@ -15,7 +15,7 @@ class LinksController < ApplicationController
 		end
 	end
 	def find_post
-		@link = Link.where(answer_id: params[:answer_id], question_id: params[:question_id], number: params[:number]).all
+		@link = Link.where(answer_id: params[:answer_id], number: params[:number]).all
 		render json: @link, status: 200
 	end
 end

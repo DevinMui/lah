@@ -1,4 +1,4 @@
-
+url = "http://4b4084d9.ngrok.io/"
 $(document).ready(function() {
 	var answers = $('#answers').html()
 	//console.log(answers)
@@ -10,23 +10,14 @@ $(document).ready(function() {
 			if(answer_id == undefined)
 				return true
 			var string = "#answer-" + answer_id
-			for(var i=0;i<$(string).find(".post-text").find("a").length;i++){
-				//var xhr = new XMLHttpRequest(); // makes new api request to my server on my laptop
+			post = $(string).find(".post-text").find("a")
+			console.log(post[0])
+			for(var i=0;i<post.length;i++){
+				index = i
 				var params = {answer_id: answer_id, number: i} // parameters to send to my server
 				console.log(params)
-				/*xhr.open("POST", "http://4b4084d9.ngrok.io/links/find_post", true) // starts post to server
-				xhr.setRequestHeader("Accept", "application/json");
-				xhr.onreadystatechange = function () { // checks if async task is completed and returns data
-			        if (xhr.readyState == 4) {
-			           if (xhr.status == 200) {
-			                var data = xhr.responseText;
-			                console.log(data)
-			            }
-			        }
-			    };
-				xhr.send(params) // sends parameters to server*/
 				$.ajax({
-				    url: 'http://4b4084d9.ngrok.io/links/find_post',
+				    url: url + 'links/find_post',
 				    headers: {
 				    	"Accept": "application/json"
 				    },
@@ -36,8 +27,8 @@ $(document).ready(function() {
 
 				    dataType: 'json',
 				    async: true,
-				    success: function(msg) {
-				        console.log(msg);
+				    success: function(data) {
+				        $(string).find(".post-text").find("a")[index].href = url + "archive/" + data[0].archive // change link
 				    }
 				});
 			}
@@ -45,5 +36,5 @@ $(document).ready(function() {
 			console.log("this a tag has no name attribute");
 		}
 	})
-	
+
 });
